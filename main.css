@@ -1,0 +1,69 @@
+body {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    margin: 20px;
+    margin-left: 5%;
+    width: 50%;
+    color: #F1F1F1;
+}
+
+h1 {
+    margin-bottom: 10px;
+    color: grey;
+}
+
+form {
+    color: grey;
+}
+
+label {
+    padding: 1em;
+}
+.info-panel{
+    width: 100%;
+    height: 100px;
+}
+.comment-panel{
+    width: 100%;
+    height: 200px;
+}
+
+.result-pass{
+    background-color: #143c2b;
+    color: #36b37e;
+    padding: .5em;
+    overflow-wrap: break-word;
+}
+
+.result-fail{
+    background-color: #4f1c16;
+    color: #ef5c48;
+    padding: .5em;
+    overflow-wrap: break-word;
+}
+
+.result-need-info{
+    background-color: #3f3102;
+    color: #cf9f02;
+    padding: .5em;
+    overflow-wrap: break-word;
+}
+
+.info-panel-output{
+    background-color: #092957;
+    padding: 1em;
+    overflow-wrap: break-word;
+}
+
+.comment-body{
+    background-color: grey;
+    padding: 1em;
+    overflow-wrap: break-word;
+}
+fieldset {
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+    width: 50%;
+    text-align: center;
+}

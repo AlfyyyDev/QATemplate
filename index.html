@@ -1,37 +1,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Text Formatter</title>
-    <style>
-        /* Some basic styling for the app */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-
-        h1 {
-            margin-bottom: 10px;
-        }
-
-        textarea {
-            width: 100%;
-            height: 200px;
-        }
-
-        pre {
-            background-color: #f5f5f5;
-            padding: 10px;
-            white-space: pre-wrap;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QA Template Tool</title>
+    <link rel="stylesheet" href="main.css">
 </head>
 <body>
-    <h1>Text Formatter</h1>
+    <h1>QA Template</h1>
+    <hr>
     <form>
-        <textarea id="textInput" placeholder="Enter your text here"></textarea>
+        <label for="environment-select">Select environment:</label>
+        <select name = "testEnvironment" id="environment-select">
+            <option value="">-Select an option-</option>
+            <option value="DevWednesday">DevWednesday</option>
+            <option value="DevMain">DevMain</option>
+            <option value="DevWeekly">DevWeekly</option>
+            <option value="custom">Other(Custom)</option>
+        </select>
+        <br>
+        <div id="customEnvironmentContainer" style="display:none">
+            <br>
+            <label for="customEnvironment">Custom Environment:</label>
+            <input type="text" id="customEnvironment">
+        </div>
+        <br>
+        <fieldset id="resultRadioFieldset">
+            <input type="radio" id="pass" name="resultRadio" value="QA Pass">
+            <label for="pass">Pass</label>
+            <input type="radio" id="fail" name="resultRadio" value="QA Fail">
+            <label for="fail">Fail</label>
+            <input type="radio" id="needInfo" name="resultRadio" value="Need More Info">
+            <label for="needInfo">Need Info</label>
+        </fieldset>
+        <br>
+        <label for="infoPanelInput">Info Panel:</label>
+        <textarea id="infoPanelInput" placeholder="Enter Info Panel..." class="info-panel"></textarea>
+        <br>
+        <label for="commentBodyInput">Comment Body:</label>
+        <textarea id="commentBodyInput" placeholder="Enter Comment Body..." class="comment-panel"></textarea>
     </form>
-    <pre id="output"></pre>
-
+    <hr>
+    <div id="output"></div>
+    
     <script src="script.js"></script>
 </body>
 </html>
