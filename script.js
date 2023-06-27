@@ -7,6 +7,7 @@ var customEnvironmentTextInput = document.getElementById("customEnvironment");
 var commentBodyInput = document.getElementById("commentBodyInput");
 var infoPanelInput = document.getElementById("infoPanelInput");
 var output = document.getElementById("output");
+var copyButton = document.getElementById("copyButton");
 
 // Establish output variables
 var testEnvironment = "Environment";
@@ -29,8 +30,12 @@ infoPanelInput.addEventListener("input", formatInfoPanel);
 commentBodyInput.addEventListener("input", formatCommentBody);
 customEnvironmentTextInput.addEventListener("input", formatCustomEnvironment);
 environmentSelect.addEventListener("change", formatEnvironmentSelect);
+copyButton.addEventListener("click", generateTextOutput);
 
 // Format Setters
+let headerText = "";
+let infoText = "";
+let bodyText = "";
 
 function setHeaderStyle(){
     var headerId;
@@ -43,14 +48,20 @@ function setHeaderStyle(){
     if(headerId === "pass"){
         headerClass = "result-pass"
         headerIcon = "✔️ "
+        headerText = `{panel:bgColor=#e3fcef}
+        h3. *QA Pass`    
     }
     else if(headerId === "fail"){
         headerClass = "result-fail"
         headerIcon = "❌ "
+        headerText = `{panel:bgColor=#ffebe6}
+        h3. *QA Fail`
     }
     else if(headerId === "needInfo"){
         headerClass = "result-need-info"
         headerIcon = "🛈 "
+        headerText = `{panel:bgColor=#fefae6}
+        h3. *Need More Info`
     }
 }
 
@@ -64,7 +75,7 @@ function formatQaResult() {
         }
     }
     header = radioResult;
-    generateOutput();
+    generatePreviewOutput();
 }
 
 // Sets environment text based on selection
@@ -73,32 +84,32 @@ function formatEnvironmentSelect() {
     if (environmentSelect.value === "custom"){
         customEnvironmentContainer.style.display = "block";
         testEnvironment = customEnvironmentTextInput.value
-        generateOutput();
+        generatePreviewOutput();
     }
     else{
         customEnvironmentContainer.style.display = "none";
         testEnvironment = environmentSelect.value;
-        generateOutput();
+        generatePreviewOutput();
     }
 }
 
 function formatCustomEnvironment() {
     testEnvironment = customEnvironmentTextInput.value
-    generateOutput();
+    generatePreviewOutput();
 }
 
 function formatInfoPanel() {
     infoPanel = infoPanelInput.value;
-    generateOutput();
+    generatePreviewOutput();
 }
 
 function formatCommentBody() {
     commentBody = commentBodyInput.value;
-    generateOutput();
+    generatePreviewOutput();
 }
 
 // Generats the live output according to desired order
-function generateOutput(){
+function generatePreviewOutput(){
     //TODO savePage();
     setHeaderStyle()
     output.innerHTML = 
@@ -106,4 +117,15 @@ function generateOutput(){
         <p class=info-panel-output>🛈 ${infoPanel}</p>
         <p class=comment-body>${commentBody}</p>
         `;
+}
+
+function generateTextOutput(){ 
+    generatePreviewOutput();
+    let finalText = ` ${headerText} in ${testEnvironment}*{panel}
+    {panel:bgColor=#deebff}
+    *${infoPanel}*
+    {panel}
+    *${commentBody}*
+    `;
+    navigator.clipboard.writeText(finalText);
 }
